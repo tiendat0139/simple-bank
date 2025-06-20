@@ -40,6 +40,8 @@ jobs:
           sudo mv migrate /usr/bin/migrate 
           which migrate
       
+      - name: Overwrite .env file
+        run: echo "DB_SOURCE=postgresql://root:root@localhost:5432/simple_bank?sslmode=disable" > .env
       - name: Run migrations
         run: make migrateup
       
