@@ -37,11 +37,6 @@ jobs:
           curl -L https://github.com/golang-migrate/migrate/releases/download/v4.18.3/migrate.linux-amd64.tar.gz | tar xvz
           sudo mv migrate /usr/bin/migrate 
           which migrate
-      
-      - name: Overwrite .env file
-        run: |
-          sed -i 's|^DB_SOURCE=.*$|DB_SOURCE=postgresql://root:root@localhost:5432/simple_bank?sslmode=disable|' app.env
-          cat app.env
       - name: Run migrations
         run: make migrateup
       
