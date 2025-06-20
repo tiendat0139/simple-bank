@@ -1,5 +1,5 @@
 postgres:
-	docker run --name simple_bank_db -e POSTGRES_USER=root -e POSTGRES_PASSWORD=root -p 5433:5432 -d postgres:12-alpine
+	docker run --name simple_bank_db -e POSTGRES_USER=root -e POSTGRES_PASSWORD=root -p 5432:5432 -d postgres:12-alpine
 createdb:
 	docker exec -it simple_bank_db createdb --username=root --owner=root simple_bank
 dropdb:
@@ -7,16 +7,16 @@ dropdb:
 
 # migration commands use golang-migrate tool
 migrateup:
-	migrate -path db/migration -database "postgresql://root:root@localhost:5433/simple_bank?sslmode=disable" -verbose up
+	migrate -path db/migration -database "postgresql://root:root@localhost:5432/simple_bank?sslmode=disable" -verbose up
 
 migratedown:
-	migrate -path db/migration -database "postgresql://root:root@localhost:5433/simple_bank?sslmode=disable" -verbose down
+	migrate -path db/migration -database "postgresql://root:root@localhost:5432/simple_bank?sslmode=disable" -verbose down
 
 migrateup1:
-	migrate -path db/migration -database "postgresql://root:root@localhost:5433/simple_bank?sslmode=disable" -verbose up 1
+	migrate -path db/migration -database "postgresql://root:root@localhost:5432/simple_bank?sslmode=disable" -verbose up 1
 	
 migratedown1:
-	migrate -path db/migration -database "postgresql://root:root@localhost:5433/simple_bank?sslmode=disable" -verbose down 1
+	migrate -path db/migration -database "postgresql://root:root@localhost:5432/simple_bank?sslmode=disable" -verbose down 1
 
 
 sqlc:
