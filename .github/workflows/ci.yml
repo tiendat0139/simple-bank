@@ -41,7 +41,7 @@ jobs:
           which migrate
       
       - name: Overwrite .env file
-        run: echo "DB_SOURCE=postgresql://root:root@localhost:5432/simple_bank?sslmode=disable" > .env
+        run: echo "DB_SOURCE=postgresql://root:root@localhost:5432/simple_bank?sslmode=disable" > app.env
       - name: Run migrations
         run: make migrateup
       
