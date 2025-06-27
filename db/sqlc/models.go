@@ -6,6 +6,8 @@ package db
 
 import (
 	"time"
+
+	"github.com/google/uuid"
 )
 
 type Account struct {
@@ -22,6 +24,17 @@ type Entry struct {
 	AccountID int64
 	Amount    int64
 	CreatedAt time.Time
+}
+
+type Session struct {
+	ID           uuid.UUID
+	Username     string
+	RefreshToken string
+	UserAgent    string
+	ClientIp     string
+	IsBlocked    bool
+	ExpriresAt   time.Time
+	CreatedAt    time.Time
 }
 
 type Transfer struct {

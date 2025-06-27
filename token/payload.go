@@ -16,10 +16,10 @@ type Payload struct {
 	jwt.RegisteredClaims
 }
 
-func NewPayload(username string, duration time.Duration) (*Payload, error) {
+func NewPayload(username string, duration time.Duration) (*Payload, uuid.UUID, error) {
 	tokenId, err := uuid.NewRandom()
 	if err != nil {
-		return nil, err
+		return nil, tokenId, err
 	}
 
 	payload := &Payload{
@@ -34,7 +34,7 @@ func NewPayload(username string, duration time.Duration) (*Payload, error) {
 			Audience:  []string{"simple-bank-users"},
 		},
 	}
-	return payload, nil
+	return payload, tokenId, nil
 }
 
 func (p *Payload) Valid() error {
