@@ -14,13 +14,13 @@ import (
 
 const createSession = `-- name: CreateSession :one
 INSERT INTO sessions (
-    id,
+  id,
 	username,
 	refresh_token,
-    user_agent,
-    client_ip,
-    is_blocked,
-    exprires_at
+  user_agent,
+  client_ip,
+  is_blocked,
+  exprires_at
 ) VALUES (
   $1, $2, $3, $4, $5, $6, $7
 ) RETURNING id, username, refresh_token, user_agent, client_ip, is_blocked, exprires_at, created_at
