@@ -40,7 +40,9 @@ proto:
 		--grpc-gateway_out=pb \
 		--grpc-gateway_opt paths=source_relative \
 		proto/*.proto
+redis:
+	docker run --name redis -p 6379:6379 -d redis:7.4.4-alpine
 
 evans:
 	evans --host localhost --port 9090 -r repl
-.PHONY: postgres createdb dropdb migrateup migratedown migrateup1 migratedown1 sqlc test server mock proto evans
+.PHONY: postgres createdb dropdb migrateup migratedown migrateup1 migratedown1 sqlc test server mock proto evans redis
